@@ -39,7 +39,7 @@ I immediately determined that this could do the work. It can act as a HID device
 
 #### Arduino Uno
 
-The Arduino Uno is by far my favorite microcontroller. It's cheap. It's easy. It's fun. What's not to like? Hmm... well no HID support for one. "But, Eric, try the Due or the Zero!" Yes, the Due and the Zero support HID, but that would be violating one of my requirements of not buying another microcontroller and no matter what, I wasn't going to do that. NO. MATTER. WHAT.
+The Arduino Uno is by far my favorite microcontroller. It's cheap. It's easy. It's fun. What's not to like? Hmm... well no HID support for one. "But, Eric, try the Due or the Zero!" Yes, the Due and the Zero support HID, but that would be violating one of my requirements of not buying another microcontroller and no matter what, I wasn't going to do that.
 
 I got on the Internets and I found a probable solution: [NicoHood](https://github.com/NicoHood/HID)
 
@@ -47,11 +47,9 @@ I went trough the instructions and I used one Arduino to flash another Arduino. 
 
 #### Microcenter
 
-I live just outside of Los Angeles and pre-pandemic I would buy everything at Fry's in Anaheim. I've always looked down on Microcenter and I could never understand how they (of all places) managed to keep the lights on. Also, like many people, I'm trying to get a new video card. Not so easy right now, is it? Downright impossible as it turns out. About a week ago, I received a message that Microcenter in Tustin, CA had some video cards just sitting on their shelf. I immediately dropped everything I was doing and drove there. Can you guess what happened? Of course you can. No video cards, but I did wander over to embedded section to look for a nice little enclosure and guess what I found sitting there all by itself? Yup. A Teensy.
+I live just outside of Los Angeles and pre-pandemic I would buy everything at Fry's in Anaheim. I've always looked down on Microcenter and I could never understand how they (of all places) managed to keep the lights on. Also, like many people, I'm trying to get a new video card. Not so easy right now, is it? Downright impossible as it turns out. About a week ago, I received a message that Microcenter in Tustin, CA had some video cards just sitting on their shelf. I immediately dropped everything I was doing and drove there. No video cards, but I did wander over to embedded section to look for a nice little enclosure and guess what I found sitting there all by itself. A Teensy.
 
-Of course I had heard of Teensy before and of course I knew that this was the exact hardware that was made to do exactly what I wanted. BUT. *BUT.* It did NOT meet one of my requirements. I did not already own it.
-
-Well, there's something about spending money. I was already carrying around a giant Dell 4k curved monitor (lol) and since I was already spending money, I thought let's just sneak this little guy in here. What's an extra $25 bucks?
+I had heard of Teensy before and I knew that this was the exact hardware that was made to do exactly what I wanted. I bought it.
 
 My hardware decision was made! And it was a great choice. Nothing like buying another microcontroller.
 
@@ -63,7 +61,7 @@ My hardware decision was made! And it was a great choice. Nothing like buying an
 
 ### Hardware
 
-Here is the quick version done on a breadboard. Do you need any instructions on this build? I hope not, because I don't have any... lol. Just kidding, I have a nice parts list and high res photo of what I did.
+Here is the quick version done on a breadboard. Do you need any instructions on this build? I hope not, because I don't have any... lol. I do, however, have a nice parts list and high res photo of what I did.
 
 Parts List:
 * Teensy 3.5 [https://www.adafruit.com/product/3267](https://www.adafruit.com/product/3267) -- I believe you can buy this with the headers already soldered on. Maybe *you* want that, but boy do I need the practice.
@@ -72,7 +70,7 @@ Parts List:
 * Full-size Breadboard [https://www.adafruit.com/product/239](https://www.adafruit.com/product/239)
 * Buttons [https://www.adafruit.com/product/1119](https://www.adafruit.com/product/1119)
 
-You can buy all of this at your local Microcenter. I had all of this stuff laying around, except for the Teensy ;). Try to use what ya got. This list is just in case you need to find it all online.
+You can buy all of this at your local Microcenter. I had all of this stuff laying around, except for the Teensy. Try to use what ya got and get rid of some crap. This list is just in case you need to find it all online.
 
 And here is the finished breadboard:
 
@@ -80,7 +78,7 @@ And here is the finished breadboard:
 
 The buttons from left to right: Previous Track, Play/Pause, Next Track, Volume Down, Mute, Volume Up.
 
-Yes, yes, we all see it. I know you're thinking, "What the heck is that extra yellow wire doing there?" Well, it wanted to be part of the party and now it's just there for the ride.
+Yes, yes, we all see it and I know you're thinking, "What the heck is that extra yellow wire doing there?" Turns out that it's just there for the ride.
 
 ### The MediaButtons BreadboardEasy Sketch
 
@@ -117,11 +115,11 @@ If you want to read more about the bounce.h library, there is a nice write-up at
 
 ### Hardware
 
-So, yeah, that breadboard version is like really fun. Well, have you ever tried to change the volume from 12 to 100? I have and let me tell you, that's like 90 clicks. Who has the time for that?! Luckily, I saw this coming...
+That breadboard version is like really fun. Well, have you ever tried to change the volume from 12 to 100? I have and let me tell you, that's like 90 clicks. Who has the time for that?! Luckily, I saw this coming...
 
 <img alt="Inland Rotary Encoder" src="./images/encoder-and-adapter.jpg" width="100" />
 
-When I was at Microcenter I also bought this Inland Rotary Encoder (with an Integrated clicky button). It cost $2.99. I'm going add it to the project for controlling volume and use the clicky button for mute. Also, since I actually like having dedicated buttons, I'm going to use one of my Adafruit Proto-boards (this is the one that fits in an Altoids tin).
+When I was at Microcenter I also bought this Inland Rotary Encoder (with an integrated clicky button). It cost $2.99. I'm going add it to the project for controlling volume and use the clicky button for mute. Also, I'm going to use one of my Adafruit Proto-boards (this is the one that fits in an Altoids tin).
 
 Here's the updated parts list for Upgrade #1:
 * Teensy 3.5 [https://www.adafruit.com/product/3267](https://www.adafruit.com/product/3267)
@@ -177,6 +175,7 @@ That's enough lookin'. Let's get to work.
     1. This is because that location on the Teensy is 3.3v and we need a digital pin instead
     2. We already cut the trace for this at Step 4.3
 9. Rejoice
+
 <img alt="Adafruit Proto-board Front" src="./images/protoboard-front.jpg" width="800" /> <img alt="Adafruit Proto-board Angle" src="./images/protoboard-angle.jpg" width="800" /> <img alt="Inland Rotary Encoder" src="./images/encoder-and-adapter.jpg" width="800" /> <img alt="Lighted Arcade Buttons" src="./images/arcade-buttons.jpg" width="800" /> <img alt="Adafruit Proto-board Back" src="./images/protoboard-back.jpg" width="800" /> <img alt="Finished Proto-board with Encoder" src="./images/protoboard-encoder-done.jpg" width="800" />
 
 ### The MediaButtons Adafruit Proto-board Sketch
@@ -188,9 +187,28 @@ Proto-board with rotary encoder Teensy/Arduino code is here: [ProtoboardEncoder]
 
 ### [NOTE: code completed, instructions not]
 
-Proto-board with rotary encoder and an LCD Teensy/Arduino code is here: [ProtoboardLCD](./ProtoboardLCD)
+I thought a nice upgrade would be to display the current volume on an LCD attached to the Teensy. I thought it would be very simple so I added an LCD with an integrated I2C that I already had on-hand. I quickly realized that when I started up the PC, the Teensy wouldn't have any idea what the current volume was and further, it wouldn't know when I changed the volume using Windows.
 
-Desktop code is found here: [Desktop MediaButtons](./Desktop)
+This "server-side" code is used to read the current volume and any changes to the volume and send that value to the Teensy so the Teensy can accurately display it. This Windows app sits in the taskbar and will try to automatically configure itself to communicate with the Teensy, but if it gets it wrong you can set the COM port manually.
+
+I also added code to the Teensy to handle the LCD and the COM port communications. Here is the last update for the proto-board with rotary encoder and LCD for the Teensy/Arduino: [ProtoboardLCD](./Arduino/ProtoboardLCD)
+
+Here is the desktop code: [Desktop MediaButtons](./Desktop)
+
+MediaButtons sits in the taskbar:
+<img alt="MediaButtons running in the taskbar" src="./images/MediaButtons-taskbar-icon.png" width="1000" />
+
+Here's the context menu:
+<img alt="MediaButtons context menu" src="./images/MediaButtons-context-menu.png" width="1000" />
+
+MediaButtons is running and it's talking to the Teensy:
+<img alt="MediaButtons is communicating with the Teensy" src="./images/MediaButtons-message-start.png" width="1000" />
+
+Stop!
+<img alt="Stop MediaButtons" src="./images/MediaButtons-message-stop.png" width="1000" />
+
+So many options...
+<img alt="MediaButtons configuration screen" src="./images/MediaButtons-configuration.png" width="1000" />
 
 Parts List:
 Here's the updated parts list for Upgrade #2:
