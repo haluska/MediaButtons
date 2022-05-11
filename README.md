@@ -190,7 +190,7 @@ Proto-board with rotary encoder Teensy/Arduino code is here: [ProtoboardEncoder]
 
 Proto-board with rotary encoder and an LCD Teensy/Arduino code is here: [ProtoboardLCD](./ProtoboardLCD)
 
-Desktop code is found here: [Desktop MediaButtons](../Desktop)
+Desktop code is found here: [Desktop MediaButtons](./Desktop)
 
 Parts List:
 Here's the updated parts list for Upgrade #2:
