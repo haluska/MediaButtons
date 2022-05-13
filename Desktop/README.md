@@ -5,12 +5,13 @@
 This simple Windows taskbar application reads the current volume setting and any changes to the volume and sends that to the attached Teensy.
 
 ### Environment
-Tested on Windows 10, 11
-Works with Visual Studio 2019 and 2022.
+* Tested on Windows 10, 11
+* Works with Visual Studio 2019 and 2022.
 
 ### Instructions
 
-Restore NuGet packages and press F5!
+* Restore NuGet packages
+* Press F5!
 
 ### Screenshots
 
