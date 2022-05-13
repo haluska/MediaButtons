@@ -12,7 +12,7 @@ MediaButtons started out a simple project to use hardware buttons to control aud
 * Play/Pause
 * Next Track
 
-I know alot of us are thinking, 'My keyboard already does that!' Yeah, mine does, too, but you know what? I didn't build my keyboard and that's what I wanted to do.
+I know a lot of us are thinking, 'My keyboard already does that!' Yeah, mine does, too, but you know what? I didn't build my keyboard and that's what I wanted to do.
 
 So I needed to start making a list of requirements. Here's what I wanted:
 
