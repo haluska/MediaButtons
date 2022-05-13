@@ -71,7 +71,7 @@ Parts List:
 * Full-size Breadboard [https://www.adafruit.com/product/239](https://www.adafruit.com/product/239)
 * Buttons [https://www.adafruit.com/product/1119](https://www.adafruit.com/product/1119)
 
-You can buy all of this at your local Microcenter. I had all of this stuff laying around, except for the Teensy. Try to use what ya got and get rid of some crap. This list is just in case you need to find it all online.
+You can buy all of this at your local Microcenter. I had all of this stuff laying around, except for the Teensy. Try to use what ya got and get rid of some junk. This list is just in case you need to find it all online.
 
 And here is the finished breadboard:
 
