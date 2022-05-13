@@ -19,7 +19,6 @@ namespace MediaButtons
 
 		private void LoadData()
 		{
-			//showMessageCheckBox.Checked = MediaButtons.Properties.Settings.Default.ShowMessage;
 			txtPort.Text = MediaButtons.Properties.Settings.Default.PortName;
 		}
 
@@ -29,39 +28,8 @@ namespace MediaButtons
 			if (this.DialogResult == DialogResult.OK)
 			{
 				MediaButtons.Properties.Settings.Default.PortName = txtPort.Text;
-				//MediaButtons.Properties.Settings.Default.ShowMessage = showMessageCheckBox.Checked;
 				MediaButtons.Properties.Settings.Default.Save();
 			}
-		}
-
-		//void AudioEndpointVolume_OnVolumeNotification(AudioVolumeNotificationData data)
-		//{
-		//    // This shows data.MasterVolume, you can do whatever you want here
-		//    int volume = (int)Math.Round(Device.AudioEndpointVolume.MasterVolumeLevelScalar * 100);
-		//    port.Write("<Vol: |" + (volume.ToString()) + ">");
-		//}
-		//void Form1_FormClosed(object sender, FormClosedEventArgs e)
-		//{
-
-		//}
-		//private void button1_Click(object sender, EventArgs e)
-		//{
-		//    PortWrite("1");
-		//}
-
-		//private void button2_Click(object sender, EventArgs e)
-		//{
-		//    PortWrite("<HelloWorld| 12| 24.7>");
-		//}
-		private void PortWrite(string message)
-		{
-			//port.Write(message);
-		}
-
-		private void button3_Click(object sender, EventArgs e)
-		{
-			//int volume = (int)Math.Round(Device.AudioEndpointVolume.MasterVolumeLevelScalar * 100);
-			//port.Write("<Vol: |" + (volume.ToString()) + ">");
 		}
 
 		private void FindThePort()
