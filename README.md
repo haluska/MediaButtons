@@ -1,4 +1,5 @@
 # Arduino/Teensy MediaButtons
+March 16, 2021
 
 ## Overview
 
@@ -47,7 +48,7 @@ I went trough the instructions and I used one Arduino to flash another Arduino. 
 
 #### Microcenter
 
-I live just outside of Los Angeles and pre-pandemic I would buy everything at Fry's in Anaheim. I've always looked down on Microcenter and I could never understand how they (of all places) managed to keep the lights on. Also, like many people, I'm trying to get a new video card. Not so easy right now, is it? Downright impossible as it turns out. About a week ago, I received a message that Microcenter in Tustin, CA had some video cards just sitting on their shelf. I immediately dropped everything I was doing and drove there. No video cards, but I did wander over to embedded section to look for a nice little enclosure and guess what I found sitting there all by itself. A Teensy.
+I live just outside of Los Angeles and pre-pandemic I would buy everything at Fry's in Anaheim. I've always looked down on Microcenter and I could never understand how they (of all places) managed to keep the lights on. Also, like many people, I'm trying to get a new video card. Not so easy right now, is it? Downright impossible as it turns out. About a week ago, I received a message that Microcenter in Tustin, CA had some video cards just sitting on their shelf. I dropped everything I was doing and drove there. No video cards, but I did wander over to the embedded section to look for a nice little enclosure and guess what I found sitting there all by itself. A Teensy.
 
 I had heard of Teensy before and I knew that this was the exact hardware that was made to do exactly what I wanted. I bought it.
 
@@ -61,7 +62,7 @@ My hardware decision was made! And it was a great choice. Nothing like buying an
 
 ### Hardware
 
-Here is the quick version done on a breadboard. Do you need any instructions on this build? I hope not, because I don't have any... lol. I do, however, have a nice parts list and high res photo of what I did.
+Here is the quick version done on a breadboard. Do you need any instructions on this build? I hope not, because I don't have any... lol. I do, however, have a nice parts list and a high res photo of what I did.
 
 Parts List:
 * Teensy 3.5 [https://www.adafruit.com/product/3267](https://www.adafruit.com/product/3267) -- I believe you can buy this with the headers already soldered on. Maybe *you* want that, but boy do I need the practice.
@@ -78,7 +79,7 @@ And here is the finished breadboard:
 
 The buttons from left to right: Previous Track, Play/Pause, Next Track, Volume Down, Mute, Volume Up.
 
-Yes, yes, we all see it and I know you're thinking, "What the heck is that extra yellow wire doing there?" Turns out that it's just there for the ride.
+Yes, yes, we all see it and I know you're thinking, "What the heck is that extra yellow wire doing there?" Turns out it's just there for the ride.
 
 ### The MediaButtons BreadboardEasy Sketch
 
@@ -107,7 +108,7 @@ void loop() {
 ```
 That sketch will run and to do that, you'll need to connect your teensy and set it up as a keyboard in the Arduino IDE Menu: Tools > USB Type > Keyboard
 
-There's a little surprise if you decide to try this. Not only does the button mute the volume of the connected computer... it will also *unmute it!*
+There's a little surprise if you decide to try this. Not only does the mute button mute the volume of the connected computer... it will also *unmute it!*
 
 If you want to read more about the bounce.h library, there is a nice write-up at PJRC: [https://www.pjrc.com/teensy/td_libs_Bounce.html](https://www.pjrc.com/teensy/td_libs_Bounce.html)
 

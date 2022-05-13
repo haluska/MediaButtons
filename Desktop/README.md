@@ -6,7 +6,7 @@ This simple Windows taskbar application reads the current volume setting and any
 
 ### Environment
 * Tested on Windows 10, 11
-* Works with Visual Studio 2019 and 2022.
+* Works with Visual Studio 2019 and 2022
 
 ### Instructions
 
