@@ -1,18 +1,18 @@
-#MediaButtons Windows Taskbar App
+# MediaButtons Windows Taskbar Application
 
-###Overview
+### Overview
 
 This simple Windows taskbar application reads the current volume setting and any changes to the volume and sends that to the attached Teensy.
 
-###Environment
+### Environment
 Tested on Windows 10, 11
 Works with Visual Studio 2019 and 2022.
 
-###Instructions
+### Instructions
 
 Restore NuGet packages and press F5!
 
-###Screenshots
+### Screenshots
 
 MediaButtons sits in the taskbar:
 <img alt="MediaButtons running in the taskbar" src="../images/MediaButtons-taskbar-icon.png" width="1000" />
