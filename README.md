@@ -159,7 +159,7 @@ That's enough lookin'. Let's get to work.
 3. Button and LED Male Header
     1. Need a 14-pin male header
     2. Solder this to the board from B9 to B22
-    3. SEMI-IMPORTANT: If you skip soldering pins 13 and 18, you can just pull the unsoldered pins out when you're done soldering the rest. This will make it all a little cleaner.
+    3. SEMI-IMPORTANT: If you skip soldering pins 13 and 18 in the header, you can just pull the unsoldered pins out when you're done soldering the rest. This will make it all a little cleaner.
 4. Cut the Traces
     1. We'll be cutting the tiny little metal trace between rows C and D
     2. Cut it at pins 9, 12, 14, 17, 19, 21, 22 for the LEDs and the Buttons
@@ -169,7 +169,7 @@ That's enough lookin'. Let's get to work.
     1. Red wire from G7 to the bottom positive (+) line
     2. Black wire from C7 to the bottom negative (-) line
 6. Solder ground for the LED, Buttons, Rotary Encoder
-    1. Cut and then strip a 7" length of wire and cut it into 7 even lengths
+    1. Create 7 jumpers: cut and then strip about a 2" length of wire and cut it into 7 even lengths
     2. Jump and solder pins 9, 12, 14, 17, 19, 22, & 30 to the negative line
 7. Solder power for the Rotary Encoder - solder a red wire from pin A29 to the power line
 8. Jump pin C21 to C23
@@ -185,8 +185,6 @@ Proto-board with rotary encoder Teensy/Arduino code is here: [ProtoboardEncoder]
 
 
 ## Upgrade #2: Talking to the PC
-
-### [NOTE: code completed, instructions not]
 
 I thought a nice upgrade would be to display the current volume on an LCD attached to the Teensy. I thought it would be very simple so I added an LCD with an integrated I2C that I already had on-hand. I quickly realized that when I started up the PC, the Teensy wouldn't have any idea what the current volume was and further, it wouldn't know when I changed the volume using Windows.
 
