@@ -62,16 +62,16 @@ My hardware decision was made! And it was a great choice. Nothing like buying an
 
 ### Hardware
 
-Here is the quick version done on a breadboard. Do you need any instructions on this build? I hope not, because I don't have any... lol. I do, however, have a nice parts list and a high res photo of what I did.
+Here is the quick version done on a breadboard. Do you need any instructions on this build? I hope not, because I don't have any. I do, however, have a nice parts list and a high res photo of what I did.
 
 Parts List:
-* Teensy 3.5 [https://www.adafruit.com/product/3267](https://www.adafruit.com/product/3267) -- I believe you can buy this with the headers already soldered on. Maybe *you* want that, but boy do I need the practice.
+* Teensy 3.5 [https://www.adafruit.com/product/3267](https://www.adafruit.com/product/3267) -- You can buy this with the headers already soldered on.
 * Breakaway Male Headers [https://www.adafruit.com/product/392](https://www.adafruit.com/product/392)
 * Solid-core Wire [https://www.adafruit.com/product/1311](https://www.adafruit.com/product/1311)
 * Full-size Breadboard [https://www.adafruit.com/product/239](https://www.adafruit.com/product/239)
 * Buttons [https://www.adafruit.com/product/1119](https://www.adafruit.com/product/1119)
 
-You can buy all of this at your local Microcenter. I had all of this stuff laying around, except for the Teensy. Try to use what ya got and get rid of some junk. This list is just in case you need to find it all online.
+You can buy all of this at your local Microcenter. I had all of this stuff laying around, except for the Teensy.
 
 And here is the finished breadboard:
 
@@ -79,7 +79,7 @@ And here is the finished breadboard:
 
 The buttons from left to right: Previous Track, Play/Pause, Next Track, Volume Down, Mute, Volume Up.
 
-Yes, yes, we all see it and I know you're thinking, "What the heck is that extra yellow wire doing there?" Turns out it's just there for the ride.
+Yes, yes, we all see it and I know you're thinking, "What the heck is that extra yellow wire doing there?" 🤷‍♂️
 
 ### The MediaButtons BreadboardEasy Sketch
 
@@ -108,15 +108,13 @@ void loop() {
 ```
 That sketch will run and to do that, you'll need to connect your teensy and set it up as a keyboard in the Arduino IDE Menu: Tools > USB Type > Keyboard
 
-There's a little surprise if you decide to try this. Not only does the mute button mute the volume of the connected computer... it will also *unmute it!*
-
 If you want to read more about the bounce.h library, there is a nice write-up at PJRC: [https://www.pjrc.com/teensy/td_libs_Bounce.html](https://www.pjrc.com/teensy/td_libs_Bounce.html)
 
 ## Upgrade #1: Adafruit Proto-board
 
 ### Hardware
 
-That breadboard version is like really fun. Well, have you ever tried to change the volume from 12 to 100? I have and let me tell you, that's like 90 clicks. Who has the time for that?! Luckily, I saw this coming...
+That breadboard version is really fun, but have you ever tried to change the volume from 12 to 100? I have and let me tell you, that's like 90 clicks. Who has the time for that?! Luckily, I saw this coming...
 
 <img alt="Inland Rotary Encoder" src="./images/encoder-and-adapter.jpg" width="100" />
 
