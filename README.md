@@ -24,13 +24,13 @@ Now I needed to decide what microcontroller I was going to use.
 
 ## Microcontroller
 
-I already have too many boards laying around. I went an pulled out my drawer of microcontrollers and looky what I found:
+I already have too many boards laying around. I went an pulled out my drawer of microcontrollers and here's what I found:
 
 * Raspberry Pi 3b
 * Raspberry Pi 4
 * BeagleBone Black
 * Raspberry Pi Zero W
-* Many Arduino Uno <-- Easily my favorite
+* Many Arduino Uno
 
 The RPi 3 & 4 are just too powerful. I scratched them off the list. Same thing with the BBB. This left me with the Uno and the Pi0. The Pi0 was promising, so I looked into it.
 
@@ -40,9 +40,9 @@ I immediately determined that this could do the work. It can act as a HID device
 
 #### Arduino Uno
 
-The Arduino Uno is by far my favorite microcontroller. It's cheap. It's easy. It's fun. What's not to like? Hmm... well no HID support for one. "But, Eric, try the Due or the Zero!" Yes, the Due and the Zero support HID, but that would be violating one of my requirements of not buying another microcontroller and no matter what, I wasn't going to do that.
+The Arduino Uno is by far my favorite microcontroller. It's cheap. It's easy. It's fun. What's not to like? Hmm... well no HID support for one. "But, Eric, try the Due or the Zero!" Yes, the Due and the Zero support HID, but I wasn't prepared to buy another piece of hardware.
 
-I got on the Internets and I found a probable solution: [NicoHood](https://github.com/NicoHood/HID)
+I got on the Internet and I found a probable solution: [NicoHood](https://github.com/NicoHood/HID)
 
 I went trough the instructions and I used one Arduino to flash another Arduino. I thought that this was going to be the way then life brought me to Microcenter.
 
