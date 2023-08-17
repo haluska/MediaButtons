@@ -144,7 +144,7 @@ Wanna see ugly? Here's the back:
 
 Do you see all of those scratches? The horizontal ones are just me cutting the traces so the board works. The vertical ones are me freaking out wondering why I solder so bad.
 
-That's enough lookin'. Let's get to work.
+That's enough looking. Let's get to work.
 
 #### Step-By-step
 
