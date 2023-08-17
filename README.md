@@ -48,7 +48,7 @@ I went trough the instructions and I used one Arduino to flash another Arduino. 
 
 #### Microcenter
 
-I live just outside of Los Angeles and pre-pandemic I would buy everything at Fry's in Anaheim. I've always looked down on Microcenter and I could never understand how they (of all places) managed to keep the lights on. Also, like many people, I'm trying to get a new video card. Not so easy right now, is it? Downright impossible as it turns out. About a week ago, I received a message that Microcenter in Tustin, CA had some video cards just sitting on their shelf. I dropped everything I was doing and drove there. No video cards, but I did wander over to the embedded section to look for a nice little enclosure and guess what I found sitting there all by itself. A Teensy.
+I live just outside of Los Angeles and pre-pandemic I would buy everything at Fry's in Anaheim. I've always looked down on Microcenter and I could never understand how they've managed to keep the lights on. Also, like many people, I'm trying to get a new video card. Not so easy right now, is it? Downright impossible as it turns out. About a week ago, I received a message that Microcenter in Tustin had some video cards just sitting on their shelf. I dropped everything I was doing and drove there. No video cards, but I did wander over to the embedded section to look for a nice little enclosure and guess what I found sitting there all by itself. A Teensy.
 
 I had heard of Teensy before and I knew that this was the exact hardware that was made to do exactly what I wanted. I bought it.
 
