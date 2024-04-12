@@ -12,15 +12,13 @@ MediaButtons started out a simple project to use hardware buttons to control aud
 * Play/Pause
 * Next Track
 
-I know a lot of us are thinking, 'My keyboard already does that!' Yeah, mine does, too, but you know what? I didn't build my keyboard and that's what I wanted to do.
-
-So I needed to start making a list of requirements. Here's what I wanted:
+My list of requirements:
 
 1. Fun -- I want to build this myself
 2. Free -- I want to use hardware that I already own
 3. Simple -- I want to use USB and send the actual Media Keystrokes
 
-Now I needed to decide what microcontroller I was going to use.
+Now to decide what microcontroller to use.
 
 ## Microcontroller
 
@@ -36,7 +34,7 @@ The RPi 3 & 4 are just too powerful. I scratched them off the list. Same thing w
 
 #### Raspberry Pi Zero W
 
-I immediately determined that this could do the work. It can act as a HID device. I found a couple of examples online that seemed to fit the bill, but you know what? I didn't have any prototyping hardware for the Pi0! I set it aside. Yes, I was willing to spend $1 to make this work, *but only if needed*.
+I immediately determined that this could do the work. It can act as a HID device. I found a couple of examples online that seemed to fit the bill. However, I didn't have any prototyping hardware for the Pi0! I set it aside. Yes, I was willing to spend $1 to make this work, *but only if needed*.
 
 #### Arduino Uno
 
@@ -48,7 +46,7 @@ I went trough the instructions and I used one Arduino to flash another Arduino. 
 
 #### Microcenter
 
-I live just outside of Los Angeles and pre-pandemic I would buy everything at Fry's in Anaheim. I've always looked down on Microcenter and I could never understand how they've managed to keep the lights on. Also, like many people, I'm trying to get a new video card. Not so easy right now, is it? Downright impossible as it turns out. About a week ago, I received a message that Microcenter in Tustin had some video cards just sitting on their shelf. I dropped everything I was doing and drove there. No video cards, but I did wander over to the embedded section to look for a nice little enclosure and guess what I found sitting there all by itself. A Teensy.
+I live just outside of Los Angeles and pre-pandemic I would buy everything at Fry's in Anaheim. I've always looked down on Microcenter and I could never understand how they've managed to keep the lights on. Also, like many people, I'm trying to get a new video card. Not so easy right now. Downright impossible as it turns out. About a week ago, I received a message that Microcenter in Tustin had some video cards just sitting on their shelf. I dropped everything I was doing and drove there. No video cards, but I did wander over to the embedded section to look for a nice little enclosure and guess what I found sitting there all by itself. A Teensy.
 
 I had heard of Teensy before and I knew that this was the exact hardware that was made to do exactly what I wanted. I bought it.
 
@@ -79,7 +77,7 @@ And here is the finished breadboard:
 
 The buttons from left to right: Previous Track, Play/Pause, Next Track, Volume Down, Mute, Volume Up.
 
-Yes, yes, we all see it and I know you're thinking, "What the heck is that extra yellow wire doing there?" 🤷‍♂️
+Yes, yes, we all see it and I know you're thinking, "What the heck is that extra yellow wire doing there?" 🤷‍♂️ No idea.
 
 ### The MediaButtons BreadboardEasy Sketch
 
@@ -114,7 +112,7 @@ If you want to read more about the bounce.h library, there is a nice write-up at
 
 ### Hardware
 
-That breadboard version is really fun, but have you ever tried to change the volume from 12 to 100? I have and let me tell you, that's like 90 clicks. Who has the time for that?! Luckily, I saw this coming...
+That breadboard version is really fun, but have you ever tried to change the volume from 12 to 100? I have and that's like 90 clicks. Who has the time for that?! Luckily, I saw this coming...
 
 <img alt="Inland Rotary Encoder" src="./images/encoder-and-adapter.jpg" width="100" />
 
@@ -180,7 +178,6 @@ That's enough looking. Let's get to work.
 ### The MediaButtons Adafruit Proto-board Sketch
 
 Proto-board with rotary encoder Teensy/Arduino code is here: [ProtoboardEncoder](./Arduino/ProtoboardEncoder/ProtoboardEncoder.ino)
-
 
 ## Upgrade #2: Talking to the PC
 
