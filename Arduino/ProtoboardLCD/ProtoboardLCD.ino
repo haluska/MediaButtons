@@ -15,8 +15,7 @@
  */
 
 #include <Bounce.h>
-#include <Wire.h> 
-
+#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
 #define BOARD_LED 13
@@ -33,15 +32,21 @@
 
 //LCD I2C address is usually 0x27
 //20,4 = 16 chars x 2 line display
-LiquidCrystal_I2C lcd(0x27,20,4);  
+LiquidCrystal_I2C lcd(0x27,20,2); 
 
 //Data from PC:
 const byte numChars = 32;
 char receivedChars[numChars];
 char tempChars[numChars];
-char messageFromPC[numChars] = {0};
-int integerFromPC = 0;
-float floatFromPC = 0.0;
+char rawMessageFromPC[numChars] = {0};
+int area = 0;
+char area1Label[numChars] = {0};
+char area1Value[numChars] = {0};
+char area2Label[numChars] = {0};
+char area2Value[numChars] = {0};
+char area3Label[numChars] = {0};
+char area3Value[numChars] = {0};
+//float floatFromPC = 0.0;
 boolean newData = false;
 
 //10 ms debounce time is good for most pushbuttons.
@@ -94,7 +99,6 @@ void loop() {
       showParsedData();
       newData = false;
   }
-  
   if (previousButton.fallingEdge()) {
     Keyboard.press(KEY_MEDIA_PREV_TRACK);
     Keyboard.release(KEY_MEDIA_PREV_TRACK);
@@ -117,36 +121,36 @@ void loop() {
   }
   //Rotary Encoder:
   VolumeChange = CheckVolume();
-  if (VolumeChange < 0){
-    Serial.println("Descrease");
+  if (VolumeChange < 0) {
+    //Serial.println("Descrease");
     Keyboard.press(KEY_MEDIA_VOLUME_DEC);
     Keyboard.release(KEY_MEDIA_VOLUME_DEC);
   }
-  else if (VolumeChange > 0){
-    Serial.println("Increase");
+  else if (VolumeChange > 0) {
+    //Serial.println("Increase");
     Keyboard.press(KEY_MEDIA_VOLUME_INC);
     Keyboard.release(KEY_MEDIA_VOLUME_INC);
   }
 }
 
-/* Incoming data is formatted. Example:
- * <Volume|72|1.45>
- * 
- * < = start marker
- * | = data delimiter
- * > = end marker */
-void CheckForMessages(){
+void CheckForMessages() {
   static boolean recvInProgress = false;
   static byte ndx = 0;
   char startMarker = '<';
   char endMarker = '>';
-  char rc;
-
-  while (Serial.available() > 0 && newData == false){
-    rc = Serial.read();
+  char input;
+  /*
+    Incoming data is formatted as:
+    <Volume|MuteStatus|DeviceName>
+    < = start marker
+    | = data delimiter
+    > = end marker 
+  */
+  while (Serial.available() > 0 && newData == false) {
+    input = Serial.read();
     if (recvInProgress == true) {
-      if (rc != endMarker) {
-        receivedChars[ndx] = rc;
+      if (input != endMarker) {
+        receivedChars[ndx] = input;
         ndx++;
         if (ndx >= numChars) {
           ndx = numChars - 1;
@@ -159,35 +163,32 @@ void CheckForMessages(){
         newData = true;
       }
     }
-    else if (rc == startMarker) {
+    else if (input == startMarker) {
       recvInProgress = true;
     }
   }
 }
 
-/* We are sending the Arduino a | delimited string and
- * parsing that as a string, int, float */
-void parseData(){
+/* We are sending the Arduino a | delimited string */
+void parseData() {
   //Used by strtok() as an index
   char * strtokIndx; 
 
   //Get the first part of the message:
-  strtokIndx = strtok(tempChars,"|");
-  strcpy(messageFromPC, strtokIndx);
+  strtokIndx = strtok(tempChars, "|");
+  strcpy(area1Value, strtokIndx);
 
   //Continue where we left it:
   strtokIndx = strtok(NULL, "|");
-  //Convert from int:
-  integerFromPC = atoi(strtokIndx);
+  strcpy(area2Value, strtokIndx);
 
   //Continue where we left it:
   strtokIndx = strtok(NULL, "|");
-  //Convert from float:
-  floatFromPC = atof(strtokIndx);       
+  strcpy(area3Value, strtokIndx);
 }
 
-void showParsedData(){
-  UpdateLCD(messageFromPC);
+void showParsedData() {
+  UpdateLCD();
   //Moved the blinking for the volume to here.
   //This way the board blinks when volumen change
   //is initiated on the usb host side, too.
@@ -201,20 +202,65 @@ void Blink(int PIN,int HowLong){
   Serial.println("Blink");
 }
 
-void UpdateLCD(String Message){
-  //lcd.autoscroll();
-  lcd.clear();
+void UpdateLCD() {
+  /*
+  16x2 I2C LCD
+  Areas 1, 2, 3:
+  ------------------
+  |1111111122222222|
+  |3333333333333333|
+  ------------------
+  */
+
+
+// byte smiley[8] {
+// B00000,
+// B10001,
+// B00000,
+// B00000,
+// B10001,
+// B01110,
+// B00000,
+// };
+// lcd.createChar(0, smiley);
+// lcd.begin(16, 2);
+// lcd.write(byte(0));
+// lcd.createChar(40,30);
+
+  //Area 1
+  //Row 0, 0 to 7
+  //Label is 0 to 3
+  //Value is 4 to 7
   lcd.setCursor(0,0);
-  lcd.print(Message + integerFromPC);
+  lcd.print("Vol ");
+  lcd.printf("%-4s", area1Value);
+
+  //Area 2
+  //Row 0, 8 to 15
+  //Label is 8 to 11
+  //Value is 12 to 15
+  lcd.setCursor(8,0);
+  if (strcmp(area2Value, "On") == 0) {
+    lcd.print("Mute On ");
+  }
+  else {
+    lcd.print("        ");
+  }
+  
+  //Area 3 is Row 1, 0 to 15
+  //Centering the device name:
+  int temp = strlen(area3Value);
+  lcd.setCursor((16 - temp) / 2,1);
+  lcd.print(area3Value);
 }
 
-int CheckVolume(){
+int CheckVolume() {
   static uint16_t state = 0;
   delayMicroseconds(100);
   state = (state<<1) | digitalRead(CLOCK_PIN) | 0xe000;
-  if (state==0xf000){
+  if (state==0xf000) {
     state=0x0000;
-    if(digitalRead(DATA_PIN)){
+    if (digitalRead(DATA_PIN)) {
       return 1;
     }
     else {

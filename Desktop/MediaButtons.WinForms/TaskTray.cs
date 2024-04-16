@@ -9,28 +9,28 @@ namespace MediaButtons
 	{
 		private string _portName;
 		private SerialPort _port = new SerialPort();
-		private NotifyIcon notifyIcon = new NotifyIcon();
-		private MenuItem menuItemStart;
-		private MenuItem menuItemStop;
-		private MenuItem menuItemConfig = new MenuItem();
-		private MenuItem menuItemExit = new MenuItem();
-		private static MMDeviceEnumerator enumer = new MMDeviceEnumerator();
-		private MMDevice Device = enumer.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-		Configuration configuration = new Configuration();
+		private NotifyIcon _notifyIcon = new NotifyIcon();
+		private MenuItem _menuItemStart;
+		private MenuItem _menuItemStop;
+		private MenuItem _menuItemConfig = new MenuItem();
+		private MenuItem _menuItemExit = new MenuItem();
+		private static MMDeviceEnumerator _deviceEnumerator = new MMDeviceEnumerator();
+		private MMDevice _device = _deviceEnumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+		private Configuration _configuration = new Configuration();
 
 		public TaskTray()
 		{
 			Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
 
-			menuItemStart = new MenuItem("Run", new EventHandler(menuItemToggle_Click));
-			menuItemStop = new MenuItem("Stop", new EventHandler(menuItemToggle_Click));
-			menuItemConfig = new MenuItem("Configuration", new EventHandler(ShowConfig));
-			menuItemExit = new MenuItem("Exit", new EventHandler(Exit));
+			_menuItemStart = new MenuItem("Run", new EventHandler(menuItemToggle_Click));
+			_menuItemStop = new MenuItem("Stop", new EventHandler(menuItemToggle_Click));
+			_menuItemConfig = new MenuItem("Configuration", new EventHandler(ShowConfig));
+			_menuItemExit = new MenuItem("Exit", new EventHandler(Exit));
 
-			notifyIcon.Icon = MediaButtons.Properties.Resources.AppIcon;
-			notifyIcon.DoubleClick += new EventHandler(notifyIcon_DoubleClick);
-			notifyIcon.ContextMenu = new ContextMenu(new MenuItem[] { menuItemStart, menuItemStop, new MenuItem("-"), menuItemConfig, menuItemExit });
-			notifyIcon.Visible = true;
+			_notifyIcon.Icon = MediaButtons.Properties.Resources.AppIcon;
+			_notifyIcon.DoubleClick += new EventHandler(notifyIcon_DoubleClick);
+			_notifyIcon.ContextMenu = new ContextMenu(new MenuItem[] { _menuItemStart, _menuItemStop, new MenuItem("-"), _menuItemConfig, _menuItemExit });
+			_notifyIcon.Visible = true;
 
 			ToggleCommunications();
 		}
@@ -52,26 +52,26 @@ namespace MediaButtons
 				if (OpenPort())
 				{
 					UpdateVolume();
-					Device.AudioEndpointVolume.OnVolumeNotification += AudioEndpointVolume_OnVolumeNotification;
-					menuItemStart.Text = string.Format("Running on {0}", _portName);
-					menuItemStart.Checked = true;
-					menuItemStop.Text = "Click to Stop";
-					menuItemStop.Checked = false;
-					notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-					notifyIcon.BalloonTipTitle = "Talking to MediaButtons";
-					notifyIcon.BalloonTipText = "Double click the tray icon to change this.";
-					notifyIcon.ShowBalloonTip(2000);
+					_device.AudioEndpointVolume.OnVolumeNotification += AudioEndpointVolume_OnVolumeNotification;
+					_menuItemStart.Text = string.Format("Running on {0}", _portName);
+					_menuItemStart.Checked = true;
+					_menuItemStop.Text = "Click to Stop";
+					_menuItemStop.Checked = false;
+					_notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+					_notifyIcon.BalloonTipTitle = "Talking to MediaButtons";
+					_notifyIcon.BalloonTipText = "Double click the tray icon to change this.";
+					_notifyIcon.ShowBalloonTip(2000);
 				}
 				else
 				{
-					menuItemStart.Text = "Connection Error";
-					menuItemStart.Checked = false;
-					menuItemStop.Text = "Stopped";
-					menuItemStop.Checked = true;
-					notifyIcon.BalloonTipIcon = ToolTipIcon.Error;
-					notifyIcon.BalloonTipTitle = "Connection Error";
-					notifyIcon.BalloonTipText = "There was an error talking to MediaButtons. Is it plugged in? Double click the tray icon to try again.";
-					notifyIcon.ShowBalloonTip(2000);
+					_menuItemStart.Text = "Connection Error";
+					_menuItemStart.Checked = false;
+					_menuItemStop.Text = "Stopped";
+					_menuItemStop.Checked = true;
+					_notifyIcon.BalloonTipIcon = ToolTipIcon.Error;
+					_notifyIcon.BalloonTipTitle = "Connection Error";
+					_notifyIcon.BalloonTipText = "There was an error talking to MediaButtons. Is it plugged in? Double click the tray icon to try again.";
+					_notifyIcon.ShowBalloonTip(2000);
 				}
 			}
 
@@ -84,15 +84,15 @@ namespace MediaButtons
 				_port.Close();
 			}
 			catch { }
-			Device.AudioEndpointVolume.OnVolumeNotification -= AudioEndpointVolume_OnVolumeNotification;
-			menuItemStart.Text = "Click to Start";
-			menuItemStart.Checked = false;
-			menuItemStop.Text = "Stopped";
-			menuItemStop.Checked = true;
-			notifyIcon.BalloonTipIcon = ToolTipIcon.Warning;
-			notifyIcon.BalloonTipTitle = "Stopped talking to MediaButtons";
-			notifyIcon.BalloonTipText = "Double click the tray icon to try again.";
-			notifyIcon.ShowBalloonTip(2000);
+			_device.AudioEndpointVolume.OnVolumeNotification -= AudioEndpointVolume_OnVolumeNotification;
+			_menuItemStart.Text = "Click to Start";
+			_menuItemStart.Checked = false;
+			_menuItemStop.Text = "Stopped";
+			_menuItemStop.Checked = true;
+			_notifyIcon.BalloonTipIcon = ToolTipIcon.Warning;
+			_notifyIcon.BalloonTipTitle = "Stopped talking to MediaButtons";
+			_notifyIcon.BalloonTipText = "Double click the tray icon to try again.";
+			_notifyIcon.ShowBalloonTip(2000);
 		}
 
 		private bool OpenPort()
@@ -107,6 +107,7 @@ namespace MediaButtons
 				_portName = MediaButtons.Properties.Settings.Default.PortName;
 				_port = new SerialPort(_portName, 9600);
 				_port.Open();
+				
 				returnValue = true;
 			}
 			catch (Exception ex)
@@ -128,10 +129,10 @@ namespace MediaButtons
 
 		private void ViewConfiguration()
 		{
-			if (configuration.Visible)
-				configuration.Focus();
+			if (_configuration.Visible)
+				_configuration.Focus();
 			else
-				configuration.ShowDialog();
+				_configuration.ShowDialog();
 		}
 
 		void AudioEndpointVolume_OnVolumeNotification(AudioVolumeNotificationData data)
@@ -141,15 +142,27 @@ namespace MediaButtons
 
 		private void UpdateVolume()
 		{
-			int volume = (int)Math.Round(Device.AudioEndpointVolume.MasterVolumeLevelScalar * 100);
-			// < = begining of data
+			int volume = (int)Math.Round(_device.AudioEndpointVolume.MasterVolumeLevelScalar * 100);
+			
+			// < = beginning of data
 			// > = end of data
 			// | = data delimiter
 			// Arduino code is initially set up to receive 3 pieces data: a string, an int, a float
 			// Currently ignoring the float... this was done just for fun.
 			try
 			{
-				_port.Write("<Vol: |" + (volume.ToString()) + ">");
+				string temp = "<";
+				temp += volume.ToString();
+				temp += "|";
+				temp += GetMuteStatus();
+				temp += "|";
+				temp += System.Net.Dns.GetHostName();
+				temp += ">";
+				_port.Write(temp);
+				/*if(GetMuteStatus())
+					_port.Write("<Mute|>");
+				else
+					_port.Write("<Not Mute|>");*/
 			}
 			catch (System.InvalidOperationException iex)
 			{
@@ -164,7 +177,7 @@ namespace MediaButtons
 		{
 			// We must manually tidy up and remove the icon before we exit.
 			// Otherwise it will be left behind until the user mouses over.
-			notifyIcon.Visible = false;
+			_notifyIcon.Visible = false;
 
 			Application.Exit();
 		}
@@ -175,6 +188,12 @@ namespace MediaButtons
 				if (_port.IsOpen) _port.Close();
 				_port.Dispose();
 			}
+		}
+
+		private string GetMuteStatus()
+		{
+			if (_device.AudioEndpointVolume.Mute) return "On";
+			return "Off";
 		}
 	}
 }

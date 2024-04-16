@@ -34,7 +34,7 @@ Bounce nextButton = Bounce(NEXT_PIN, 10);
 Bounce encoderButton = Bounce(ENCODER_PIN, 10);
 
 int VolumeChange = 0;
-bool Mute = false;
+//bool Mute = false;
 
 void setup() {
 
