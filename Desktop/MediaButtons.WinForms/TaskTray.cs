@@ -159,10 +159,6 @@ namespace MediaButtons
 				temp += System.Net.Dns.GetHostName();
 				temp += ">";
 				_port.Write(temp);
-				/*if(GetMuteStatus())
-					_port.Write("<Mute|>");
-				else
-					_port.Write("<Not Mute|>");*/
 			}
 			catch (System.InvalidOperationException iex)
 			{
@@ -192,8 +188,9 @@ namespace MediaButtons
 
 		private string GetMuteStatus()
 		{
-			if (_device.AudioEndpointVolume.Mute) return "On";
-			return "Off";
+			if (_device.AudioEndpointVolume.Mute) return "MUTE";
+			//The arduino does better with a space vs an empty string.
+			return " ";
 		}
 	}
 }

@@ -31,8 +31,8 @@
 #define ENCODER_PIN 30
 
 //LCD I2C address is usually 0x27
-//20,4 = 16 chars x 2 line display
-LiquidCrystal_I2C lcd(0x27,20,2); 
+//20,4 = 16 chars x 2 line display (??)
+LiquidCrystal_I2C lcd(0x27,20,4); 
 
 //Data from PC:
 const byte numChars = 32;
@@ -92,8 +92,8 @@ void loop() {
 
   CheckForMessages();
   if (newData == true) {
-      // this temporary copy is necessary to protect the original data
-      // strtok() used in parseData() replaces the | with \0
+      //This temporary copy is necessary to protect the original data
+      //strtok() used in parseData() replaces the | with \0
       strcpy(tempChars, receivedChars);
       parseData();
       showParsedData();
@@ -119,15 +119,12 @@ void loop() {
     Keyboard.release(KEY_MEDIA_MUTE);
     Blink(BOARD_LED, 100);
   }
-  //Rotary Encoder:
   VolumeChange = CheckVolume();
   if (VolumeChange < 0) {
-    //Serial.println("Descrease");
     Keyboard.press(KEY_MEDIA_VOLUME_DEC);
     Keyboard.release(KEY_MEDIA_VOLUME_DEC);
   }
   else if (VolumeChange > 0) {
-    //Serial.println("Increase");
     Keyboard.press(KEY_MEDIA_VOLUME_INC);
     Keyboard.release(KEY_MEDIA_VOLUME_INC);
   }
@@ -190,7 +187,7 @@ void parseData() {
 void showParsedData() {
   UpdateLCD();
   //Moved the blinking for the volume to here.
-  //This way the board blinks when volumen change
+  //This way the board blinks when volume change
   //is initiated on the usb host side, too.
   Blink(BOARD_LED, 20);
 }
@@ -199,61 +196,43 @@ void Blink(int PIN,int HowLong){
   digitalWrite(PIN, HIGH);
   delay(HowLong);
   digitalWrite(PIN, LOW);
-  Serial.println("Blink");
 }
 
 void UpdateLCD() {
   /*
-  16x2 I2C LCD
-  Areas 1, 2, 3:
-  ------------------
-  |1111111122222222|
-  |3333333333333333|
-  ------------------
+    16x2 I2C LCD
+    Areas 1, 2, 3:
+    ------------------
+    |1111111111112222|
+    |3333333333333330|
+    ------------------
   */
 
-
-// byte smiley[8] {
-// B00000,
-// B10001,
-// B00000,
-// B00000,
-// B10001,
-// B01110,
-// B00000,
-// };
-// lcd.createChar(0, smiley);
-// lcd.begin(16, 2);
-// lcd.write(byte(0));
-// lcd.createChar(40,30);
-
-  //Area 1
-  //Row 0, 0 to 7
-  //Label is 0 to 3
-  //Value is 4 to 7
+  //Area 0 (Checkmark)
+  uint8_t checkmark[8] = {0x0,0x1,0x3,0x16,0x1c,0x8,0x0};
+  lcd.createChar(0, checkmark);
+  lcd.setCursor(15,1);
+  lcd.write(byte(0));
+  
+  //Area 1 (Volume)
+  //Row 0, 0 to 11
   lcd.setCursor(0,0);
-  lcd.print("Vol ");
+  lcd.print("Volume ");
+  //cursor will continue on at previous print
   lcd.printf("%-4s", area1Value);
 
-  //Area 2
-  //Row 0, 8 to 15
-  //Label is 8 to 11
-  //Value is 12 to 15
-  lcd.setCursor(8,0);
-  if (strcmp(area2Value, "On") == 0) {
-    lcd.print("Mute On ");
-  }
-  else {
-    lcd.print("        ");
-  }
+  //Area 2 (Mute)
+  //Row 0, 12 to 15
+  lcd.setCursor(12,0);
+  lcd.printf("%-4s", area2Value);
   
-  //Area 3 is Row 1, 0 to 15
-  //Centering the device name:
-  int temp = strlen(area3Value);
-  lcd.setCursor((16 - temp) / 2,1);
+  //Area 3 (Device Name)
+  //Row 1, 0 to 15
+  lcd.setCursor(0,1);
   lcd.print(area3Value);
 }
 
+//Using a rotary encoder
 int CheckVolume() {
   static uint16_t state = 0;
   delayMicroseconds(100);
