@@ -42,7 +42,6 @@ namespace MediaButtons
 
 		private void ToggleCommunications()
 		{
-
 			if (_port.IsOpen)
 			{
 				CloseConnection();
@@ -59,7 +58,7 @@ namespace MediaButtons
 					_menuItemStop.Checked = false;
 					_notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
 					_notifyIcon.BalloonTipTitle = "Talking to MediaButtons";
-					_notifyIcon.BalloonTipText = "Double click the tray icon to change this.";
+					_notifyIcon.BalloonTipText = "Double click the tray icon to change this or right click the icon to open the menu.";
 					_notifyIcon.ShowBalloonTip(2000);
 				}
 				else
@@ -70,7 +69,7 @@ namespace MediaButtons
 					_menuItemStop.Checked = true;
 					_notifyIcon.BalloonTipIcon = ToolTipIcon.Error;
 					_notifyIcon.BalloonTipTitle = "Connection Error";
-					_notifyIcon.BalloonTipText = "There was an error talking to MediaButtons. Is it plugged in? Double click the tray icon to try again.";
+					_notifyIcon.BalloonTipText = "There was an error talking to MediaButtons. Is it plugged in? Right click on the icon to open the menu.";
 					_notifyIcon.ShowBalloonTip(2000);
 				}
 			}
@@ -91,7 +90,7 @@ namespace MediaButtons
 			_menuItemStop.Checked = true;
 			_notifyIcon.BalloonTipIcon = ToolTipIcon.Warning;
 			_notifyIcon.BalloonTipTitle = "Stopped talking to MediaButtons";
-			_notifyIcon.BalloonTipText = "Double click the tray icon to try again.";
+			_notifyIcon.BalloonTipText = "Double click the icon to start it up again.";
 			_notifyIcon.ShowBalloonTip(2000);
 		}
 
@@ -147,8 +146,6 @@ namespace MediaButtons
 			// < = beginning of data
 			// > = end of data
 			// | = data delimiter
-			// Arduino code is initially set up to receive 3 pieces data: a string, an int, a float
-			// Currently ignoring the float... this was done just for fun.
 			try
 			{
 				string temp = "<";
@@ -171,10 +168,9 @@ namespace MediaButtons
 
 		void Exit(object sender, EventArgs e)
 		{
-			// We must manually tidy up and remove the icon before we exit.
-			// Otherwise it will be left behind until the user mouses over.
+			//We must manually tidy up and remove the icon before we exit.
+			//Otherwise it will be left behind until the user mouses over.
 			_notifyIcon.Visible = false;
-
 			Application.Exit();
 		}
 		private void OnApplicationExit(object sender, EventArgs e)
@@ -189,7 +185,7 @@ namespace MediaButtons
 		private string GetMuteStatus()
 		{
 			if (_device.AudioEndpointVolume.Mute) return "MUTE";
-			//The arduino does better with a space vs an empty string.
+			//The Arduino does better with a space vs an empty string.
 			return " ";
 		}
 	}
